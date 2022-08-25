@@ -14,31 +14,32 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             color.ignoresSafeArea()
+                .onTapGesture {
+                num += 1
+                if (num % 15 == 0) {
+                    display = "FOOBAR"
+                    color = .red
+                } else if (num % 5 == 0) {
+                    display = "BAR"
+                    color = .yellow
+                } else if (num % 3 == 0) {
+                    display = "FOO"
+                    color = .green
+                } else {
+                    display = "\(num)"
+                    color = .black
+                }
+            }
+            .onLongPressGesture {
+                num = 0
+                display = "\(num)"
+                color = .black
+            }
             Text("\(display)")
                 .font(.system(size: 140))
                 .preferredColorScheme(.dark)
                 .padding()
-                .onTapGesture {
-                    num += 1
-                    if (num % 15 == 0) {
-                        display = "FOOBAR"
-                        color = .red
-                    } else if (num % 5 == 0) {
-                        display = "BAR"
-                        color = .yellow
-                    } else if (num % 3 == 0) {
-                        display = "FOO"
-                        color = .green
-                    } else {
-                        display = "\(num)"
-                        color = .black
-                    }
-                }
-                .onLongPressGesture {
-                    num = 0
-                    display = "\(num)"
-                    color = .black
-                }
+                
         }
         
     }
